@@ -1,39 +1,26 @@
 use yew::prelude::*;
-mod form;
-use form::Form;
+mod input;
+use input::Input;
 
-enum Msg {
-    AddOne,
-}
-
-struct Model {
-    value: i64,
-}
+struct Model {}
 
 impl Component for Model {
-    type Message = Msg;
+    type Message = ();
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
-        Self { value: 0 }
-    }
-
-    fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
-        match msg {
-            Msg::AddOne => {
-                self.value += 1;
-                // the value has changed so we need to
-                // re-render for it to appear on the page
-                true
-            }
-        }
+        Model {}
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         // This gives us a component's "`Scope`" which allows us to send messages, etc to the component.
         html! {
-            <div class="h-screen bg-gray-700 flex justify-center items-center">
-              <Form/>
+            <div class="flex items-center justify-center h-screen bg-gray-700">
+              <form class="flex p-6 bg-white rounded shadow-md justify-evenly">
+                  <Input placeholder = "Weight (kg)"/>
+                  <p class = "text-xl">{"x"}</p>
+                  <Input placeholder = "Reps"/>
+              </form>
             </div>
         }
     }
